@@ -1,0 +1,360 @@
+
+ <!DOCTYPE html>
+ <html>
+ <head>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <style>
+ body {font-family: Arial, Helvetica, sans-serif;}
+ #slider {
+     margin: 40px auto;
+     width: 85%;
+     height: 150px;
+     overflow: hidden;
+ }
+ #slider-holder {
+     display: flex;
+     flex-direction: row;
+     width: -500px;
+     position: relative;
+     left: 0;
+     animation: scroller 30s infinite;
+ }
+ .slide img {
+     float: left;
+     position: relative;
+     margin: 5px;
+ }
+ @keyframes scroller {
+     0%{
+         transform: translateX(0);
+     }10%{
+         transform: translateX(-160px);
+     }20%{
+         transform: translateX(-320px);
+     }30%{
+         transform: translateX(-480px);
+     }/*40%{
+         transform: translateX(-640px);
+     }50%{
+         transform: translateX(-800px);
+     }60%{
+         transform: translateX(-960px);
+     }70%{
+         transform: translateX(-2180px);
+     }80%{
+         transform: translateX(-1650);
+     }90%{
+         transform: translateX(-1800px);
+     }*/100%{ 
+         transform: translateX(0);
+     }
+ }
+ #myImg, #myImgTwo, #myImgThree, #myImgFoure, #myImgFive, #myImgSix, #myImgSeven,#myImgEight, #myImgNine, #myImgTen  {
+   border-radius: 5px;
+   cursor: pointer;
+   transition: 0.3s;
+   width: 150px;
+ }
+ #myImg:hover {opacity: 0.7;}
+ #myImgTwo:hover {opacity: 0.7;}
+ #myImgThree:hover {opacity: 0.7;}
+ #myImgFoure:hover {opacity: 0.7;}
+ #myImgFive:hover{opacity: 0.7;}
+ #myImgSix:hover{opacity: 0.7;}
+ #myImgSeven:hover{opacity: 0.7;}
+ #myImgEight:hover{opacity: 0.7;}
+ #myImgNine:hover{opacity: 0.7;}
+ #myImgTen:hover{opacity: 0.7;}
+ /* The Modal (background) */
+ .modal {
+   display: none; /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   padding-top: 100px; /* Location of the box */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 100%; /* Full height */
+   overflow: auto; /* Enable scroll if needed */
+   background-color: rgb(0,0,0); /* Fallback color */
+   background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+ }
+ /* Modal Content (image) */
+ .modal-content {
+   margin: auto;
+   display: block;
+   width: 300px;
+ }
+ /* Caption of Modal Image */
+ #caption {
+   margin: auto;
+   display: block;
+   width: 80%;
+   max-width: 700px;
+   text-align: center;
+   color: #ccc;
+   padding: 10px 0;
+   height: 150px;
+ }
+ /* Add Animation */
+ .modal-content, #caption {  
+   -webkit-animation-name: zoom;
+   -webkit-animation-duration: 0.6s;
+   animation-name: zoom;
+   animation-duration: 0.6s;
+ }
+ @-webkit-keyframes zoom {
+   from {-webkit-transform:scale(0)} 
+   to {-webkit-transform:scale(1)}
+ }
+ @keyframes zoom {
+   from {transform:scale(0)} 
+   to {transform:scale(1)}
+ }
+ /* The Close Button */
+ .close {
+   position: absolute;
+   top: 15px;
+   right: 35px;
+   color: #f1f1f1;
+   font-size: 40px;
+   font-weight: bold;
+   transition: 0.3s;
+ }
+ .close:hover,
+ .close:focus {
+   color: #bbb;
+   text-decoration: none;
+   cursor: pointer;
+ }
+ /* 100% Image Width on Smaller Screens */
+ @media only screen and (max-width: 700px){
+   .modal-content {
+     width: 100%;
+   }
+ }
+ </style>
+ </head>
+ <body>
+ <h2 style="text-align: center;">Image Modal</h2>
+ <div id="slider">
+     <div id="slider-holder">
+         <div class="slide">
+             <img id="myImg" src="./assets/image/canyon.jpg" alt="Snow1">
+         </div>
+         <div class="slide">
+             <img id="myImgTwo" src="./assets/image/elephant.jpg" alt="Snow2">
+         </div>
+         <div class="slide">
+             <img id="myImgThree" src="./assets/image/italy.jpg" alt="Snow3">
+         </div>
+         <div class="slide">
+             <img id="myImgFoure" src="./assets/image/forest.jpg" alt="Snow4">
+         </div>
+         <div class="slide">
+             <img id="myImgFive" src="./assets/image/landscape.jpg" alt="Snow5">
+         </div>
+         <div class="slide">
+             <img id="myImgSix" src="./assets/image/maldives.jpg" alt="Snow6">
+         </div>
+         <div class="slide">
+             <img id="myImgSeven" src="./assets/image/scotland.jpg" alt="Snow7">
+         </div>
+         <div class="slide">
+             <img id="myImgEight" src="./assets/image/sunset.jpg" alt="Snow8">
+         </div>
+         <div class="slide">
+             <img id="myImgNine" src="./assets/image/the-road.jpg" alt="Snow9">
+         </div>
+         <div class="slide">
+             <img id="myImgTen" src="./assets/image/ulsan.jpg" alt="Snow10">
+         </div>
+     </div>
+ </div>
+ <!-- The Modal -->
+ <div id="myModal" class="modal">
+   <span class="close">&times;</span>
+   <img class="modal-content" id="img01">
+   <div id="caption"></div>
+ </div>
+ <script>
+ // Get the modal
+ var modal = document.getElementById("myModal");
+ // Get the image and insert it inside the modal - use its "alt" text as a caption
+ var img = document.getElementById("myImg");
+ var imgTwo = document.getElementById("myImgTwo");
+ var imgThree = document.getElementById("myImgThree");
+ var imgFoure = document.getElementById("myImgFoure");
+ var imgFive = document.getElementById("myImgFive");
+ var imgSix = document.getElementById("myImgSix");
+ var imgSeven = document.getElementById("myImgSeven");
+ var imgEight = document.getElementById("myImgEight");
+ var imgNine = document.getElementById("myImgNine");
+ var imgTen = document.getElementById("myImgTen");
+ 
+ var modalImg = document.getElementById("img01");
+ var captionText = document.getElementById("caption");
+ 
+ img.onclick = function(){
+   modal.style.display = "block";
+   modalImg.src = this.src;
+   captionText.innerHTML = this.alt;
+ }
+ 
+ imgTwo.onclick = function(){
+   modal.style.display = "block";
+   modalImg.src = this.src;
+   captionText.innerHTML = this.alt;
+ }
+ 
+ imgThree.onclick = function(){
+   modal.style.display = "block";
+   modalImg.src = this.src;
+   captionText.innerHTML = this.alt;
+ }
+ 
+ imgFoure.onclick = function(){
+   modal.style.display = "block";
+   modalImg.src = this.src;
+   captionText.innerHTML = this.alt;
+ }
+ 
+ imgFive.onclick = function(){
+   modal.style.display = "block";
+   modalImg.src = this.src;
+   captionText.innerHTML = this.alt;
+ }
+ 
+ imgSix.onclick = function(){
+   modal.style.display = "block";
+   modalImg.src = this.src;
+   captionText.innerHTML = this.alt;
+ }
+ 
+ imgSeven.onclick = function(){
+   modal.style.display = "block";
+   modalImg.src = this.src;
+   captionText.innerHTML = this.alt;
+ }
+ 
+ imgEight.onclick = function(){
+   modal.style.display = "block";
+   modalImg.src = this.src;
+   captionText.innerHTML = this.alt;
+ }
+ 
+ imgNine.onclick = function(){
+   modal.style.display = "block";
+   modalImg.src = this.src;
+   captionText.innerHTML = this.alt;
+ }
+ 
+ imgTen.onclick = function(){
+   modal.style.display = "block";
+   modalImg.src = this.src;
+   captionText.innerHTML = this.alt;
+ }
+ 
+ // Get the <span> element that closes the modal
+ var span = document.getElementsByClassName("close")[0];
+ // When the user clicks on <span> (x), close the modal
+ span.onclick = function() { 
+   modal.style.display = "none";
+ }
+ </script>
+ </body>
+ </html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <div class="slideshow-container">
+
+        <div class="mySlides fade">
+          <div class="numbertext">1 / 10</div>
+          <img src="./assets/image/canyon.jpg" style="width:150px;">
+          <div class="text">1</div>
+        </div>
+        
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 10</div>
+            <img src="./assets/image/elephant.jpg" style="width:150px;;">
+            <div class="text">2</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 10</div>
+            <img src="./assets/image/forest.jpg" style="width:150px;">
+            <div class="text">3</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">4 / 10</div>
+            <img src="./assets/image/italy.jpg" style="width:150px;">
+            <div class="text">4</div>
+        </div>
+
+        <div class="mySlides fade">
+          <div class="numbertext">5 / 10</div>
+          <img src="./assets/image/landscape.jpg" style="width:150px;">
+          <div class="text">5</div>
+        </div>
+        
+        <div class="mySlides fade">
+          <div class="numbertext">6 / 10</div>
+          <img src="./assets/image/ulsan.jpg" style="width:150px;">
+          <div class="text">6</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">7 / 10</div>
+            <img src="./assets/image/maldives.jpg" style="width:150px;">
+            <div class="text">7</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">8 / 10</div>
+            <img src="./assets/image/scotland.jpg" style="width:150px;">
+            <div class="text">8</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">9 / 10</div>
+            <img src="./assets/image/sunset.jpg" style="width:150px;">
+            <div class="text">9</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">10 / 10</div>
+            <img src="./assets/image/the-road.jpg" style="width:150px;">
+            <div class="text">10</div>
+        </div> 
+        
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        
+    </div>
+        <br>
+        
+        <div style="text-align:center">
+          <span class="dot" onclick="currentSlide(1)"></span> 
+          <span class="dot" onclick="currentSlide(2)"></span> 
+          <span class="dot" onclick="currentSlide(3)"></span>
+          <span class="dot" onclick="currentSlide(4)"></span> 
+          <span class="dot" onclick="currentSlide(5)"></span> 
+          <span class="dot" onclick="currentSlide(6)"></span> 
+          <span class="dot" onclick="currentSlide(7)"></span> 
+          <span class="dot" onclick="currentSlide(8)"></span> 
+          <span class="dot" onclick="currentSlide(9)"></span> 
+          <span class="dot" onclick="currentSlide(10)"></span> 
+        </div>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html> 
+ -->
